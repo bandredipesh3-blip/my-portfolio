@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bright Future Academy</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #00c8ff;
+  --purple: #a855f7;
+  --bg: #030817;
+  --text: #f4f7ff;
+  --muted: #b4c1dc;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 6%;
+  background: #030817eF;
+  border-bottom: 1px solid #1c3d70;
+  backdrop-filter: blur(15px);
+}
+
+.logo {
+  color: var(--blue);
+  font-weight: 900;
+  font-size: 17px;
+}
+
+nav a {
+  color: white;
+  font-size: 13px;
+}
+
+.join {
+  background: linear-gradient(90deg, #7c3aed, #078bff);
+  padding: 11px 15px;
+  border-radius: 30px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 35px;
+  padding: 75px 7%;
+  background:
+    radial-gradient(ellipse at 80% 40%, #123d8580, transparent 50%),
+    radial-gradient(ellipse at 10% 10%, #32136a66, transparent 45%);
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--blue);
+  background: #00c8ff12;
+  border: 1px solid #00c8ff55;
+  padding: 9px 13px;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-size: clamp(38px, 5vw, 65px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #00e5ff, #a78bfa, #f472e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 20px;
+  max-width: 480px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 20px;
+  color: white;
+  background: linear-gradient(100deg, #087dff, #a020f0);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 0 25px #3b82f644;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.btn.secondary {
+  background: #ffffff08;
+  border: 1px solid #4b6a9c;
+  box-shadow: none;
+}
+
+.btn:active { transform: scale(.96); }
+
+.hero-art {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+}
+
+.study-scene {
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, #164e9c99, #54168b33 55%, transparent 70%);
+}
+
+.orbit {
+  position: absolute;
+  width: 90%;
+  height: 48%;
+  border: 1px solid #00c8ff99;
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  box-shadow: 0 0 22px #00c8ff22;
+}
+
+.orbit.two {
+  width: 72%;
+  height: 90%;
+  transform: rotate(35deg);
+  border-color: #b76aff88;
+}
+
+.book-stack {
+  text-align: center;
+  font-size: 80px;
+  filter: drop-shadow(0 0 22px #078bff88);
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating {
+  position: absolute;
+  padding: 14px;
+  border: 1px solid #4e91ff88;
+  border-radius: 15px;
+  background: #081631dd;
+  box-shadow: 0 10px 35px #0008;
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating.one { top: 14%; left: 0; }
+.floating.two { right: 0; top: 30%; animation-delay: -2s; }
+.floating.three { bottom: 10%; left: 15%; animation-delay: -1s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.benefits {
+  margin: 0 6%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #23508a;
+  border-radius: 18px;
+  background: #08152be0;
+  overflow: hidden;
+}
+
+.benefit {
+  text-align: center;
+  padding: 22px 10px;
+  border-right: 1px solid #203454;
+}
+
+.benefit:last-child { border: 0; }
+
+.benefit span {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 9px;
+}
+
+.benefit strong { font-size: 13px; }
+.benefit p { color: var(--muted); font-size: 11px; margin-top: 7px; }
+
+section.content {
+  padding: 75px 7%;
+  scroll-margin-top: 70px;
+}
+
+.section-label {
+  color: var(--blue);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 42px);
+  margin-top: 12px;
+}
+
+.subtitle {
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.7;
+  margin: 14px auto 35px;
+  max-width: 600px;
+}
+
+.course-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.courses {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  padding: 23px 18px;
+  background: linear-gradient(145deg, #10264a, #080e21 75%);
+  border: 1px solid #2554a2;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px #0005, inset 0 1px #ffffff12;
+  transition: transform .3s, box-shadow .3s;
+  transform-style: preserve-3d;
+}
+
+.card:nth-child(2) { border-color: #0eaaa8; }
+.card:nth-child(3) { border-color: #8b5cf6; }
+
+@media (hover: hover) {
+  .card:hover {
+    transform: perspective(700px) rotateX(3deg) rotateY(-3deg) translateY(-8px);
+    box-shadow: 0 20px 45px #075bca33;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 32px #3b82f688;
+  }
+}
+
+.course-icon {
+  font-size: 43px;
+  margin-bottom: 20px;
+}
+
+.card h3 { font-size: 20px; margin-bottom: 12px; }
+.card p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+.card ul {
+  list-style: none;
+  color: #d5e2fa;
+  font-size: 12px;
+  line-height: 2;
+  margin: 15px 0;
+}
+
+.card li::before {
+  content: "✓ ";
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.small-btn {
+  display: inline-block;
+  color: white;
+  background: linear-gradient(90deg, #087dff, #7c3aed);
+  padding: 10px 14px;
+  border-radius: 25px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.why {
+  border: 1px solid #234c88;
+  background: linear-gradient(150deg, #0b1a38, #060c1b);
+  border-radius: 22px;
+  padding: 25px 20px;
+}
+
+.why h3 { margin-bottom: 24px; }
+
+.why-item {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.why-item span { font-size: 24px; }
+.why-item strong { font-size: 13px; }
+.why-item p { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 6px; }
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.review {
+  padding: 22px;
+  border: 1px solid #234c88;
+  background: #0a1730;
+  border-radius: 17px;
+}
+
+.review h3 { font-size: 16px; margin-bottom: 8px; }
+.stars { color: #facc15; margin-bottom: 12px; }
+.review p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.stat {
+  text-align: center;
+  border: 1px solid #244574;
+  background: #0a1730;
+  border-radius: 14px;
+  padding: 18px 7px;
+}
+
+.stat strong {
+  display: block;
+  color: var(--blue);
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+.stat span { color: var(--muted); font-size: 11px; }
+
+.cta {
+  text-align: center;
+  padding: 55px 20px;
+  background:
+    radial-gradient(ellipse at 50% 100%, #6d28d966, transparent 65%),
+    #08152c;
+  border-top: 1px solid #1d3d6b;
+  border-bottom: 1px solid #1d3d6b;
+}
+
+.cta p {
+  color: var(--muted);
+  margin-top: 15px;
+  line-height: 1.8;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 25px 7%;
+  color: #9caecc;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+footer a { color: var(--blue); }
+
+@media (max-width: 760px) {
+  nav { padding: 15px 4%; }
+  .logo { font-size: 14px; }
+  nav a { font-size: 12px; }
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 55px 6% 35px;
+  }
+  .hero p { margin-left: auto; margin-right: auto; }
+  .buttons { justify-content: center; }
+  .hero-art { min-height: 260px; }
+  .study-scene { max-width: 290px; }
+  .benefits {
+    margin: 0 4%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .benefit:nth-child(2) { border-right: 0; }
+  .benefit:nth-child(-n+2) { border-bottom: 1px solid #203454; }
+  section.content { padding: 55px 5%; }
+  .course-layout { grid-template-columns: 1fr; }
+  .courses { grid-template-columns: 1fr; }
+  .card { padding: 25px; }
+  .reviews { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="#home">🎓 Bright Future</a>
+  <a href="#courses">Courses</a>
+  <a class="join" href="#contact">Join Now ↗</a>
+</nav>
+
+<header class="hero" id="home">
+  <div>
+    <div class="eyebrow">✦ PREMIUM LEARNING EXPERIENCE</div>
+    <h1>Learn Today,<br><span class="gradient">Lead Tomorrow</span></h1>
+    <p>
+      Build strong concepts, learn with confidence
+      and take the next step towards your dreams.
+      Quality learning for students of classes 6–10.
+    </p>
+
+    <div class="buttons">
+      <a class="btn" href="#courses">Explore Courses →</a>
+      <a class="btn secondary" href="#why">Why Choose Us?</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <div class="study-scene">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+      <div class="book-stack">📚</div>
+      <div class="floating one">📘 Learn</div>
+      <div class="floating two">⚙️ Practice</div>
+      <div class="floating three">✨ Grow</div>
+    </div>
+  </div>
+</header>
+
+<div class="benefits">
+  <div class="benefit">
+    <span>🎓</span><strong>Expert Guidance</strong>
+    <p>Learn step by step</p>
+  </div>
+  <div class="benefit">
+    <span>💡</span><strong>Personal Attention</strong>
+    <p>Focus on concepts</p>
+  </div>
+  <div class="benefit">
+    <span>📝</span><strong>Regular Practice</strong>
+    <p>Build confidence</p>
+  </div>
+  <div class="benefit">
+    <span>🚀</span><strong>Keep Improving</strong>
+    <p>Grow every day</p>
+  </div>
+</div>
+
+<section class="content" id="courses">
+  <div class="section-label">OUR COURSES</div>
+  <h2 class="section-title">Explore <span class="gradient">Our Courses</span></h2>
+  <p class="subtitle">
+    From fundamental concepts to confident learning,
+    build your knowledge one step at a time.
+  </p>
+
+  <div class="course-layout">
+    <div class="courses">
+
+      <article class="card">
+        <div class="course-icon">📐</div>
+        <h3>Mathematics</h3>
+        <p>Strengthen your problem-solving skills.</p>
+        <ul>
+          <li>Algebra</li>
+          <li>Geometry</li>
+          <li>Trigonometry</li>
+          <li>Number System</li>
+        </ul>
+        <a class="small-btn" href="#contact">Course Details →</a>
+      </article>
+
+      <article class="card">
+        <div class="course-icon">🔬</div>
+        <h3>Science</h3>
+        <p>Explore how the world around you works.</p>
+        <ul>
+          <li>Physics</li>
+          <li>Chemistry</li>
+          <li>Biology</li>
+          <li>Core Concepts</li>
+        </ul>
+        <a class="small-btn" href="#contact">Course Details →</a>
+      </article>
+
+      <article class="card">
+        <div class="course-icon">📚</div>
+        <h3>English</h3>
+        <p>Improve language and communication skills.</p>
+        <ul>
+          <li>Grammar</li>
+          <li>Vocabulary</li>
+          <li>Reading</li>
+          <li>Writing</li>
+        </ul>
+        <a class="small-btn" href="#contact">Course Details →</a>
+      </article>
+
+    </div>
+
+    <aside class="why" id="why">
+      <h3>✨ Why Choose Us?</h3>
+
+      <div class="why-item">
+        <span>👨‍🏫</span>
+        <div><strong>Guided Learning</strong>
+          <p>Clear explanations and structured lessons.</p></div>
+      </div>
+
+      <div class="why-item">
+        <span>🎯</span>
+        <div><strong>Personal Progress</strong>
+          <p>Focus on your learning goals.</p></div>
+      </div>
+
+      <div class="why-item">
+        <span>📝</span>
+        <div><strong>Practice & Revision</strong>
+          <p>Strengthen concepts through practice.</p></div>
+      </div>
+
+      <div class="why-item">
+        <span>⏰</span>
+        <div><strong>Flexible Learning</strong>
+          <p>Ask about available class timings.</p></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="content" id="reviews">
+  <div class="section-label">LEARNING JOURNEY</div>
+  <h2 class="section-title">Progress Starts <span class="gradient">Here</span></h2>
+  <p class="subtitle">
+    A good learning journey begins with curiosity,
+    consistency and the right guidance.
+  </p>
+
+  <div class="reviews">
+    <article class="review">
+      <h3>📘 Understand</h3>
+      <div class="stars">★★★★★</div>
+      <p>Build a strong foundation by learning the concepts clearly before moving to harder questions.</p>
+    </article>
+
+    <article class="review">
+      <h3>✍️ Practice</h3>
+      <div class="stars">★★★★★</div>
+      <p>Work through examples and exercises to improve your understanding and confidence.</p>
+    </article>
+
+    <article class="review">
+      <h3>🚀 Improve</h3>
+      <div class="stars">★★★★★</div>
+      <p>Review your mistakes, track your progress and keep working towards your learning goals.</p>
+    </article>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong>01</strong><span>Learn</span></div>
+    <div class="stat"><strong>02</strong><span>Practice</span></div>
+    <div class="stat"><strong>03</strong><span>Revise</span></div>
+    <div class="stat"><strong>04</strong><span>Improve</span></div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <h2>Ready to Build Your <span class="gradient">Future?</span></h2>
+  <p>
+    Want to know about courses and class timings?<br>
+    Contact the academy to learn more.
+  </p>
+  <a class="btn" href="mailto:example@gmail.com">Contact Us →</a>
+</section>
+
+<footer>
+  <div>
+    <strong class="logo">🎓 Bright Future</strong>
+    <p>Learn • Practice • Grow</p>
+  </div>
+  <div>
+    <a href="#home">Home</a> ·
+    <a href="#courses">Courses</a> ·
+    <a href="#why">About</a> ·
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2026 Bright Future Academy</p>
+</footer>
+
+</body>
+  </html>
+            
